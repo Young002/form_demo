@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="#">
+	<title>qq表单注册demo</title>
+	<style>
+	/*清除所有输入框获取焦点时的边框值*/
+	*:focus{
+		outline: none;
+	}
+	input{
+		padding-left: 10px;
+	}
+	/*页面头部的左外边距*/
+		.weclome{
+			margin-left: -7px;
+			margin-right: -7px;
+			margin-top:-7px;
+			margin-bottom:;
+			padding-left: 20px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			background-color: rgb(172,202,225);
+			/*background-repeat: none;*/
+			/*background-size: 100% 100%;	*/
+			font-size: 14px;
+		}
+		.login{
+			margin-left: 20px;
+		}
+		/*文本框的各项属性*/
+		.inputname{
+			width: 400px;
+			height: 30px;
+			border-radius: 5px;
+			border: 1px solid rgb(191,191,193);
+			background: url(asterisk.png) no-repeat 98% center;
+			background-size: 10px 10px;
+			box-shadow: 0 0 5px rgb(191,191,193) inset;
+			transition: 0.25s;        /*输入框变宽的过度时间*/
+		}
+
+		.inputname:focus:invalid {
+			border-radius: 5px;
+			border: 1px solid red;
+			width: 450px;
+			height: 30px;
+			box-shadow: 0 0 5px red;
+			background: url(invalid.png) no-repeat 98% center;
+			background-size: 10px 10px;
+
+		}
+		.inputname:focus + .remind_hinder{
+			display: inline;
+
+		}
+
+	  	.inputname:required:valid{
+			background: url(valid.png) no-repeat 98% center;
+			background-size: 10px 10px;
+	  	}
+
+	  	.inputname:required:valid + .remind_hinder{
+			background: #28921f;
+			/*border-color: #28921f;*/
+			/*box-shadow: #5cd053;*/
+
+	  	}
+	  	.inputname:required:valid{
+			border-color: #28921f;
+			box-shadow: #5cd053;
+	  	}
+		/*下拉列表的各项属性*/
+		.country{
+			margin-left: 20px;
+			height: 30px;
+			border-radius: 5px;
+			border: 1px solid rgb(191,191,193);
+
+		}
+		.country:hover{
+			border:1px solid rgb(86,85,115);
+		}
+		.country:focus {
+			datalist:display;
+		}
+		/*电话号码框的各项属性*/
+		#phonenumber{
+			border-radius: 5px;
+			border: 1px solid rgb(191,191,193);
+			height:30px;
+			width: 214px;	
+		}
+		#freenumber{
+			float: right;
+			margin-right: 68%;
+		}
+		/*提交按钮的各项属性*/
+		#submit{
+			width: 400px;
+			height: 40px;
+			margin-left: 20px;
+			background-color: rgb(79,192,253);
+			border-radius: 5px;
+			border: 0px;
+			font-size: 20px;
+			color: rgb(252,252,252);
+		}
+		/*鼠标移动到提交按钮时的颜色渐变*/
+		#submit:hover{
+			background-color: rgb(3,164,252);
+		}
+		/*复选框的外边距*/
+		.checkbox{
+			margin-left: 20px;
+
+		}
+		/*脚注*/
+		footer{
+			margin-top: 100px;
+			text-align: center;
+			color: rgb(185,185,185);
+		}
+		/*清除超链接的文字下划线*/
+		a{
+			text-decoration: none;
+		}
+		/*表单外边距*/
+		form{
+			margin-left: 10px;
+		}
+		.checkbox1{
+			margin-bottom: 10px;
+		}
+		.remind_hinder{
+			font-family: "微软雅黑";
+			font-size: 5px;
+			color: white;
+			background-color: #d45252;
+			border-radius: 5px;
+			padding: 5px;
+			display: none;
+
+		}
+		.remind_hinder:before{
+			display: inline-block;
+			content: "\25C0";
+
+
+		}
+	</style>
+</head>
+<body>
+	<!-- 头部 -->
+	<div class="weclome">
+	<h1>欢迎注册QQ</h1>
+	<br>
+	<h2>每一天，乐在沟通&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="#" id="freenumber">免费靓号</a></span></h2>
+	</div>
+	<hr>
+	<!-- 注册表单 -->
+	<form action="reg.php" method="post">
+		<div class="login">
+			<label input-placeholder for="username"></label>
+			<input class="inputname" id="username" type="text" placeholder="昵称" required>
+			<span class="remind_hinder">4-16个字符，字母/中文/数字/下划线</span>
+		</div><br>
+		<div class="login">
+			<label for="password"></label>
+			<input id="password" class="inputname" type="password" placeholder="密码" required>
+			<span class="remind_hinder">6-20个字符，不能含有空格</span>
+		</div><br>
+
+		<div>
+		<input type="text" class="country" name="" list="country_list" value="+86">
+		<datalist id="country_list">
+			<option label="中国" selected="true" value=" +86"/>
+			<option label="中国香港特别行政区" value=" +852"/>
+			<option label="中国澳门特别行政区" value=" +853"/>
+			<option label="中国台湾地区" value=" +886"/>
+			<option label="阿尔及利亚" value=" +213"/>
+			<option label="阿富汗" value=" +93"/>
+			<option label="阿根廷" value=" +54"/>
+		</datalist>
+			<label for="phonenumber"></label>	
+			<input id="phonenumber" class="inputname" type="tel" pattern="1^[0-9]{10}$" placeholder="手机号码" required>
+			<span class="remind_hinder">请输入正确的手机号码格式</span>
+		</div><br>
+		<div>
+			<input id="submit" type="submit" value="立即注册">
+		</div><br>
+
+		<div class="checkbox">
+			<div class="checkbox1"><input type="checkbox"><span>同时开通QQ空间</span></div>
+			<div class="checkbox2"><input type="checkbox"><a href="#"><span>我以阅读并同意相关服务条款和政策</span></a></div>
+		</div>
+	</form>	
+	<!-- 脚注 -->
+	<footer font-color="blue">Copyright © 1998-2018Tencent All Rights Reserved</footer>
+</body>
+</html>
